@@ -14,7 +14,15 @@ public class WeatherDriver {
 		//prep for scanning information
 		Scanner userInput = new Scanner(System.in);
 		//scan and store user input
-		String userCity=userInput.nextLine();
+		String temp = userInput.nextLine();
+		StringBuilder userCity = new StringBuilder();
+		//cleaning out the state abbr.
+		String[] splited = temp.split("\\s+");
+		for (int i=0; i < splited.length ; i++ ) {
+			if (splited[i].length() !=2) {
+				userCity.append(splited[i]+ " ");
+			}
+		}
 		System.out.println(userCity+" weather: ");
 		//prep for extracting data
 		WeatherGrabbing weather = new WeatherGrabbing();
