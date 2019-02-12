@@ -10,13 +10,14 @@ import org.json.JSONException;
 public class WeatherDriver {
 	public static void main(String[] args)throws MalformedURLException,
     ProtocolException, IOException, JSONException  {
-		String UserCity;
+		String userCity;
 		Scanner userInput = new Scanner(System.in);
 		System.out.print("Where are you? ");
-		UserCity= userInput.next();
-		
+		userCity= userInput.next();
+		System.out.println(userCity+" weather: ");
 		WeatherGrabbing weather = new WeatherGrabbing();
-		System.out.println(UserCity+" weather: ");
-		WeatherGrabbing.GetJSONfile(UserCity);
+		weather.getTemp(weather.connecting(userCity));
+		
+
 	}
 }

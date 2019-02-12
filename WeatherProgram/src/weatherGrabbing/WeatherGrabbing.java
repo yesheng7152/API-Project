@@ -44,13 +44,14 @@ public class WeatherGrabbing {
 	 * @return
 	 * @throws JSONException
 	 */
-	public static String selectWeather(JSONObject jsonData) throws JSONException {
-		String weatherinfo = jsonData.getJSONObject("main").get("temp").toString();
+	public static String getTemp(String jsonData) throws JSONException {
+        JSONObject data = new JSONObject(jsonData);
+		String weatherinfo = data.getJSONObject("main").get("temp").toString();
+		System.out.println(weatherinfo + " degrees Fahrenheit");
 		return weatherinfo;
-		
 	}
 	
-	public static void GetJSONfile (String cityName) throws IOException, JSONException {
+	public static String connecting (String cityName) throws IOException, JSONException {
 		try {
 			URL myurl = new URL(structURL(cityName));
 			connect = 
@@ -68,8 +69,7 @@ public class WeatherGrabbing {
 	                 content.append(line + "\n");
 	             }
 	         }
-	         JSONObject obj = new JSONObject(content.toString());
-	         System.out.println(selectWeather(obj) + " degrees Fahrenheit");
+			 return content.toString();
 			}finally {
 				connect.disconnect();
 			}
